@@ -4,6 +4,12 @@
   "license": "MIT",
   "type": "module",
   "packageManager": "yarn@3.3.1",
+  "scripts": {
+    "generate": "ts-node --esm ./src/index.ts",
+    "write": "yarn generate > karabiner.json",
+    "sync": "yarn write && cp karabiner.json /Users/$USER/.config/karabiner.json",
+    "watch": "watchexec -c -e ts \"echo detected change && yarn sync && echo done\""
+  },
   "dependencies": {
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
