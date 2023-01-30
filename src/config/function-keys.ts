@@ -1,18 +1,19 @@
-import { KeyMapping, createMapping } from '../util/key-mapping.js';
+import { createMapping, KeyResolvable } from '../util/key-mapping.js';
 
-const keys: KeyMapping[] = [
-  { from: 'f1', to: { consumer: 'display_brightness_decrement' } },
-  { from: 'f2', to: { consumer: 'display_brightness_increment' } },
-  { from: 'f3', to: { apple_keyboard: 'mission_control' } },
-  { from: 'f4', to: { apple_keyboard: 'spotlight' } },
-  { from: 'f5', to: { consumer: 'dictation' } },
-  { from: 'f6', to: 'f6' },
-  { from: 'f7', to: { consumer: 'rewind' } },
-  { from: 'f8', to: { consumer: 'play_or_pause' } },
-  { from: 'f9', to: { consumer: 'fast_forward' } },
-  { from: 'f10', to: { consumer: 'mute' } },
-  { from: 'f11', to: { consumer: 'volume_decrement' } },
-  { from: 'f12', to: { consumer: 'volume_increment' } },
-];
+const keys: Record<string, KeyResolvable> = {
+  f1: { consumer: 'display_brightness_decrement' },
+  f2: { consumer: 'display_brightness_increment' },
+  f3: { apple_keyboard: 'mission_control' },
+  f4: { apple_keyboard: 'spotlight' },
+  f5: { consumer: 'dictation' },
+  f6: 'f6',
+  f7: { consumer: 'rewind' },
+  f8: { consumer: 'play_or_pause' },
+  f9: { consumer: 'fast_forward' },
+  f10: { consumer: 'mute' },
+  f11: { consumer: 'volume_decrement' },
+  f12: { consumer: 'volume_increment' },
+};
 
-export const functionKeys = keys.map(createMapping);
+export const functionKeys = Object.entries(keys)
+  .map(([ from, to ]) => createMapping({ from, to }));
