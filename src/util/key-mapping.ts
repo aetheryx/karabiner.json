@@ -30,9 +30,11 @@ export const resolveKey = (keyResolvable: KeyResolvable) =>
 export type KeyMapping = {
   from: KeyResolvable;
   to: KeyResolvable;
+  conditions?: any;
 };
 
 export const createMapping = (mapping: KeyMapping) => ({
+  ...mapping,
   from: resolveKey(mapping.from),
   to: [
     resolveKey(mapping.to),

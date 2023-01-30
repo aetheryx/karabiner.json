@@ -1,7 +1,12 @@
 import { Modifier, swap } from '../../util/key-mapping.js';
 import { createRule } from '../../util/rule.js';
 
-const manipulator = (plain: string, from: Modifier, to: Modifier, modifiers: Modifier[] = []) => ({
+const manipulator = (
+  plain: string,
+  from: Modifier,
+  to: Modifier,
+  modifiers: Modifier[] = [],
+) => ({
   from: {
     plain,
     modifiers: {
@@ -25,7 +30,15 @@ export const cursorJump = createRule({
         }
       }
 
-      yield manipulator('delete_or_backspace', from, to);
+      yield {
+        ...manipulator('delete_or_backspace', from, to),
+        conditions: [
+          {
+            type: 'frontmost_application_unless',
+            bundle_identifiers: [ 'com.apple.finder' ],
+          },
+        ],
+      };
     }
   },
 });
