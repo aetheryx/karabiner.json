@@ -5,10 +5,10 @@
   "type": "module",
   "packageManager": "yarn@3.3.1",
   "scripts": {
-    "generate": "ts-node --esm ./src/index.ts",
+    "generate": "ts-node --esm --transpile-only ./src/index.ts",
     "write": "yarn generate > karabiner.json",
-    "sync": "yarn write && cp karabiner.json /Users/$USER/.config/karabiner.json",
-    "watch": "watchexec -c -e ts \"echo detected change && yarn sync && echo done\""
+    "sync": "cp karabiner.json /Users/zain/.config/karabiner/karabiner.json",
+    "watch": "watchexec -c -e ts \"echo detected change && yarn write && yarn sync && echo done\""
   },
   "dependencies": {
     "@types/node": "^18.11.18",
