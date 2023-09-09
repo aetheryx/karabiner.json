@@ -1,4 +1,4 @@
-export type Modifier = `${'left' | 'right'}_${'command' | 'option' | 'shift'}`;
+import { Modifier } from './modifier';
 
 type KeyType = keyof typeof keyTypes;
 const keyTypes = {
