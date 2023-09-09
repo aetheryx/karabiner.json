@@ -1,4 +1,5 @@
-import { Modifier, swap } from '../../util/key-mapping.js';
+import { KeyMapping, swap } from '../../util/key-mapping.js';
+import { Modifier } from '../../util/modifier.js';
 import { createRule } from '../../util/rule.js';
 
 const manipulator = (
@@ -6,11 +7,12 @@ const manipulator = (
   from: Modifier,
   to: Modifier,
   modifiers: Modifier[] = [],
-) => ({
+): KeyMapping => ({
   from: {
     plain,
     modifiers: {
       mandatory: [ from, ...modifiers ],
+      optional: [ 'caps_lock' ],
     },
   },
   to: {
